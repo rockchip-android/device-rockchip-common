@@ -43,7 +43,7 @@ if [[ $TARGET_BOARD_PLATFORM = "rk3399" ]]; then
 	else
 		PARAMETER=device/rockchip/$TARGET_BOARD_PLATFORM/$TARGET_PRODUCT/parameter.txt
 	fi
-elif [[ $TARGET_BOARD_PLATFORM = "rk3368" ]]; then
+elif [ $TARGET_BOARD_PLATFORM = "rk3368" ] || [ $TARGET_BOARD_PLATFORM = "rk3366" ]; then
 	if [[ $BOARD_SYSTEMIMAGE_PARTITION_SIZE = "1610612736" ]]; then
                 PARAMETER=device/rockchip/$TARGET_BOARD_PLATFORM/parameter_system_1.5G.txt
         elif [[ $BOARD_SYSTEMIMAGE_PARTITION_SIZE = "3221225472" ]]; then
