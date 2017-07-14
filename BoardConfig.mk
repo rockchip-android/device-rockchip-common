@@ -36,6 +36,8 @@ TARGET_BOARD_PLATFORM_PRODUCT ?= tablet
 endif
 endif
 
+BOARD_HAS_WFD_HDCP ?= false
+
 # CPU feature configration
 ifeq ($(strip $(TARGET_BOARD_HARDWARE)), rk30board)
 
