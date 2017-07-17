@@ -321,3 +321,6 @@ ENABLE_CPUSETS := true
 
 # Enable sparse system image
 BOARD_USE_SPARSE_SYSTEM_IMAGE ?= false
+
+# Enable UsbDevice to Mtp mode,default is charge mode
+BOARD_USB_ALLOW_DEFAULT_MTP ?= false

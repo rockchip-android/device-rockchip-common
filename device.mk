@@ -676,6 +676,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.pms.multithreadscan=true		
 endif
 
+ifeq ($(strip $(BOARD_USB_ALLOW_DEFAULT_MTP)), true)
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.usb.default_mtp=true
+endif
+
 #add for hwui property
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.texture_cache_size=72 \
