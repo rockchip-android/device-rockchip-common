@@ -129,8 +129,18 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/rockchip/common
 TARGET_PROVIDES_INIT_RC ?= false
 #BOARD_HAL_STATIC_LIBRARIES ?= libdumpstate.$(TARGET_PRODUCT) libhealthd.$(TARGET_PRODUCT)
 
-//MAX-SIZE=512M, for generate out/.../system.img
-BOARD_SYSTEMIMAGE_PARTITION_SIZE ?= 1073741824
+#Calculate partition size from parameter.txt
+USE_DEFAULT_PARAMETER := $(shell test -f $(TARGET_DEVICE_DIR)/parameter.txt && echo true)
+ifeq ($(strip $(USE_DEFAULT_PARAMETER)), true)
+  BOARD_SYSTEMIMAGE_PARTITION_SIZE := $(shell python device/rockchip/common/get_partition_size.py $(TARGET_DEVICE_DIR)/parameter.txt system)
+  #$(info Calculated BOARD_SYSTEMIMAGE_PARTITION_SIZE=$(BOARD_SYSTEMIMAGE_PARTITION_SIZE) use $(TARGET_DEVICE_DIR)/parameter.txt)
+else
+  BOARD_SYSTEMIMAGE_PARTITION_SIZE ?= 1073741824
+  ifneq ($(strip $(TARGET_DEVICE_DIR)),)
+    #$(info $(TARGET_DEVICE_DIR)/parameter.txt not found! Use default BOARD_SYSTEMIMAGE_PARTITION_SIZE=$(BOARD_SYSTEMIMAGE_PARTITION_SIZE))
+  endif
+endif
+
 BOARD_CACHEIMAGE_PARTITION_SIZE := 69206016
 BOARD_FLASH_BLOCK_SIZE ?= 131072
 
