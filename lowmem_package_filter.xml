@@ -100,6 +100,7 @@
 <empty package="com.google.process.gapps"/>
 <empty package="com.android.defcontainer"/>
 <empty package="android.rockchip.update.service"/>
+<empty package="com.android.bluetooth"/>
 
 <hardware package="com.android.camera2"/>
 </lowmem-filter-package>
