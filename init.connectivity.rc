@@ -153,7 +153,7 @@ service ssv_p2p_supp /system/bin/wpa_supplicant \
     -e/data/misc/wifi/entropy.bin -N \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -O/data/misc/wifi/sockets \
-    -g@android:wpa_wlan0 -dd
+    -g@android:wpa_wlan0
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
