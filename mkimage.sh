@@ -236,4 +236,11 @@ then
 else
         echo "$PARAMETER not fount!"
 fi
+
+if [[ $TARGET_BOARD_PLATFORM = "rk3288" ]]; then
+	echo -n "create vendor.img..."
+        cp -a $OUT/vendor0.img $IMAGE_PATH/vendor0.img
+        cp -a $OUT/vendor1.img $IMAGE_PATH/vendor1.img
+        echo "done."
+fi
 chmod a+r -R $IMAGE_PATH/
