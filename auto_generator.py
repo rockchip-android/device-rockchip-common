@@ -30,7 +30,7 @@ include $(BUILD_PREBUILT)
 copy_app_templet = """LOCAL_PATH := $(my-dir)
 include $(CLEAR_VARS)
 LOCAL_APK_NAME := %s
-LOCAL_POST_PROCESS_COMMAND := $(shell mkdir -p $(TARGET_OUT)/vendor/%s/$(LOCAL_APK_NAME) && cp $(LOCAL_PATH)/$(LOCAL_APK_NAME).apk $(TARGET_OUT)/vendor/%s/$(LOCAL_APK_NAME)/)
+LOCAL_POST_PROCESS_COMMAND := $(shell mkdir -p $(TARGET_OUT_VENDOR)/%s/$(LOCAL_APK_NAME) && cp $(LOCAL_PATH)/$(LOCAL_APK_NAME).apk $(TARGET_OUT_VENDOR)/%s/$(LOCAL_APK_NAME)/)
 """
 
 def main(argv):
