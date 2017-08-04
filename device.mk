@@ -670,6 +670,10 @@ ifeq ($(strip $(BOOT_SHUTDOWN_ANIMATION_RINGING)),true)
 include device/rockchip/common/bootshutdown/bootshutdown.mk
 endif
 
+#boot video enable 
+ifeq ($(strip $(BOOT_VIDEO_ENABLE)),true)
+include device/rockchip/common/bootvideo/bootvideo.mk
+endif
 
 ifeq ($(strip $(BOARD_ENABLE_PMS_MULTI_THREAD_SCAN)), true)
 PRODUCT_PROPERTY_OVERRIDES += \
