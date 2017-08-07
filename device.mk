@@ -392,6 +392,10 @@ endif
 ifeq ($(strip $(TARGET_BOARD_PLATFORM_PRODUCT)), box)
 PRODUCT_PACKAGES += \
     displayd
+
+# copy hdmi resolution filter white list
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/resolution_white.xml:/system/usr/share/resolution_white.xml
 endif
 
 ########################################################
