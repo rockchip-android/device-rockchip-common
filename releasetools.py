@@ -59,6 +59,16 @@ def InstallRKLoader(loader_bin, input_zip, info):
     print "no RKLoader.bin, ignore it."
 
 
+def InstallVendor1(loader_bin, input_zip, info):
+  common.ZipWriteStr(info.output_zip, "vendor1.img", loader_bin)
+  info.script.Print("Writing vendor1 img...")
+  info.script.WriteRawSparseImage("vendor1", "vendor1.img")
+
+def InstallVendor0(loader_bin, input_zip, info):
+  common.ZipWriteStr(info.output_zip, "vendor0.img", loader_bin)
+  info.script.Print("Writing vendor0 img...")
+  info.script.WriteRawSparseImage("vendor0", "vendor0.img")
+
 def InstallUboot(loader_bin, input_zip, info):
   common.ZipWriteStr(info.output_zip, "uboot.img", loader_bin)
   info.script.Print("Writing uboot loader img...")
@@ -95,6 +105,20 @@ def FullOTA_InstallEnd(info):
     print "warning: no uboot.img in input target_files; not flashing uboot"
 
   try:
+    vendor1 = info.input_zip.read("vendor1.img")
+    print "Write vendor1.img"
+    InstallVendor1(vendor1, info.input_zip, info)
+  except KeyError:
+    print "warning: no vendor1.img in input target_files; not flashing vendor1"
+
+  try:
+    vendor0 = info.input_zip.read("vendor0.img")
+    print "Write vendor0.img"
+    InstallVendor0(vendor0, info.input_zip, info)
+  except KeyError:
+    print "warning: no vendor0.img in input target_files; not flashing vendor0"
+
+  try:
     charge = info.input_zip.read("charge.img")
     print "wirte charge now..."
     InstallCharge(charge, info.input_zip, info)
@@ -129,6 +153,38 @@ def FullOTA_InstallEnd(info):
     print "no RKLoader.bin, ignore it."
 
 def IncrementalOTA_InstallEnd(info):
+  try:
+    vendor0_target = info.target_zip.read("vendor0.img")
+  except KeyError:
+    vendor0_target = None
+
+  try:
+    vendor0_source = info.source_zip.read("vendor0.img")
+  except KeyError:
+    vendor0_source = None
+
+  if (vendor0_target != None) and (vendor0_target != vendor0_source):
+    print "write vendor0 now..."
+    InstallVendor0(vendor0_target, info.target_zip, info)
+  else:
+    print "vendor0 unchanged; skipping"
+
+  try:
+    vendor1_target = info.target_zip.read("vendor1.img")
+  except KeyError:
+    vendor1_target = None
+
+  try:
+    vendor1_source = info.source_zip.read("vendor1.img")
+  except KeyError:
+    vendor1_source = None
+
+  if (vendor1_target != None) and (vendor1_target != vendor1_source):
+    print "write vendor1 now..."
+    InstallVendor1(vendor1_target, info.target_zip, info)
+  else:
+    print "vendor1 unchanged; skipping"
+
   try:
     trust_target = info.target_zip.read("trust.img")
   except KeyError:
