@@ -707,3 +707,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.rk.hdmi_enable=true   \
     sys.status.hidebar_enable=false   \
     persist.sys.ui.hw=true
+
+ifeq ($(strip $(BOARD_DDR_VAR_ENABLED)), true)
+PRODUCT_PROPERTY_OVERRIDES += \
+       sf.power.control=1
+endif
