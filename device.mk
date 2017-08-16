@@ -689,6 +689,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.usb.default_mtp=true
 endif
 
+ifeq ($(strip $(BOARD_USE_FIX_WALLPAPER)), true)
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.wallpaper.fixsize=true
+endif
+
 #add for hwui property
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.texture_cache_size=72 \

@@ -337,3 +337,6 @@ BOARD_USE_SPARSE_SYSTEM_IMAGE ?= false
 
 # Enable UsbDevice to Mtp mode,default is charge mode
 BOARD_USB_ALLOW_DEFAULT_MTP ?= false
+
+# Set to force wallpaper fix screen only
+BOARD_USE_FIX_WALLPAPER ?= false
