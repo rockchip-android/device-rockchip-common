@@ -561,8 +561,12 @@ $(call inherit-product-if-exists, vendor/partner_gms/products/gms-mandatory.mk)
 endif
 endif
 
-ifeq ($(BUILD_WITH_WIDEVINE),true)
+ifeq ($(BOARD_WIDEVINE_OEMCRYPTO_LEVEL),3)
 $(call inherit-product-if-exists, vendor/widevine/widevine.mk)
+else
+ifeq ($(BOARD_WIDEVINE_OEMCRYPTO_LEVEL),1)
+$(call inherit-product-if-exists, vendor/widevine/L1/widevine_level1.mk)
+endif
 endif
 
 #ro.product.first_api_level indicates the first api level, device has been commercially launced on.
