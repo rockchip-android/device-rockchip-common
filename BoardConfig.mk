@@ -286,9 +286,6 @@ BOOT_SHUTDOWN_ANIMATION_RINGING ?= false
 #for pms multi thead scan
 BOARD_ENABLE_PMS_MULTI_THREAD_SCAN ?= false
 
-#for WV keybox provision
-ENABLE_KEYBOX_PROVISION ?= false
-
 # product has follow sensors or not,if had override it in product's BoardConfig
 BOARD_HAS_GPS ?= false   
 BOARD_NFC_SUPPORT ?= false
