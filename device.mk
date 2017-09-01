@@ -546,7 +546,6 @@ endif
 
 ifeq ($(strip $(BUILD_BOX_WITH_GOOGLE_MARKET)), true)
 $(call inherit-product-if-exists, vendor/partner_gms/products/gms-mini-box.mk)
-$(call inherit-product-if-exists, vendor/widevine/widevine.mk)
 endif
 
 ifeq ($(strip $(BUILD_WITH_GOOGLE_MARKET)), true)
@@ -554,6 +553,14 @@ ifeq ($(strip $(BUILD_WITH_GOOGLE_MARKET_ALL)), true)
 $(call inherit-product-if-exists, vendor/partner_gms/products/gms.mk)
 else
 $(call inherit-product-if-exists, vendor/partner_gms/products/gms-mandatory.mk)
+endif
+endif
+
+ifeq ($(BOARD_WIDEVINE_OEMCRYPTO_LEVEL),3)
+$(call inherit-product-if-exists, vendor/widevine/L3/widevine_level3.mk)
+else
+ifeq ($(BOARD_WIDEVINE_OEMCRYPTO_LEVEL),1)
+$(call inherit-product-if-exists, vendor/widevine/L1/widevine_level1.mk)
 endif
 endif
 
