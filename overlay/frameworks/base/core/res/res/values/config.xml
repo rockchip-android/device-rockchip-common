@@ -228,5 +228,6 @@
     <!-- Flag indicating which package name can access the persistent data partition -->
     <string name="config_persistentDataPackageName" translatable="false">Google Play Services</string>
     <bool name="config_enableAutoPowerModes">true</bool>
+    <bool name="config_autoPowerModePrefetchLocation">false</bool>
 
 </resources>
