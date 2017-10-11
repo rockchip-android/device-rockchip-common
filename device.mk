@@ -568,6 +568,20 @@ ifeq ($(BUILD_WITH_WIDEVINE),true)
 $(call inherit-product-if-exists, vendor/widevine/widevine.mk)
 endif
 
+#for enable optee support
+ifeq ($(strip $(PRODUCT_HAVE_OPTEE)),true)
+PRODUCT_PROPERTY_OVERRIDES += \
+       ro.enable.optee=true
+
+ifeq ($(strip $(PRODUCT_SYSTEM_VERITY)),true)
+PRODUCT_COPY_FILES += \
+       device/rockchip/common/init.optee_verify.rc:root/init.optee.rc
+else
+PRODUCT_COPY_FILES += \
+       device/rockchip/common/init.optee.rc:root/init.optee.rc
+endif
+endif
+
 #ro.product.first_api_level indicates the first api level, device has been commercially launced on.
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.product.first_api_level=23
