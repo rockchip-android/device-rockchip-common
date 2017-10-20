@@ -334,3 +334,6 @@ BOARD_USB_ALLOW_DEFAULT_MTP ?= false
 
 # Set to force wallpaper fix screen only
 BOARD_USE_FIX_WALLPAPER ?= false
+
+# SDBoot: Format data.
+RECOVERY_SDBOOT_FORMATE_DATA ?= false
