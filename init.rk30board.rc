@@ -142,6 +142,7 @@ on boot
     chown root system /sys/class/graphics/fb0/dsp_lut
     chmod 0664 /sys/class/graphics/fb0/bcsh
     chmod 0664 /sys/class/graphics/fb0/dsp_lut
+    chmod 0664 /sys/class/graphics/fb0/hdr2sdr_yn
 
 	chown system graphics /sys/class/graphics/fb0/scale
 	chmod 0664 /sys/class/graphics/fb0/scale
