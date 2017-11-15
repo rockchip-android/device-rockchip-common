@@ -84,6 +84,7 @@
 <prev package="com.android.cts.verifier"/>
 <prev package="com.google.android.exoplayer.playbacktests"/>
 <prev package="com.rockchip.itvbox"/>
+<prev package="com.rockchips.android.leanbacklauncher" />
 
 <next package="com.qihoo"/>
 <next package="com.dragon.android.pandaspace"/>
