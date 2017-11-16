@@ -236,13 +236,18 @@ else # tablet
         frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml 
 endif
 
+PRODUCT_PACKAGES += \
+	libjni_pinyinime
+
 # Live Wallpapers
+ifneq ($(strip $(TARGET_BOARD_PLATFORM_PRODUCT)), box)
 PRODUCT_PACKAGES += \
     LiveWallpapersPicker \
     NoiseField \
     PhaseBeam \
     librs_jni \
     libjni_pinyinime
+endif
 
 # HAL
 ifneq ($(strip $(TARGET_BOARD_PLATFORM_PRODUCT)), vr)
@@ -643,7 +648,14 @@ ifeq ($(strip $(BOARD_USE_LOW_MEM)),true)
 PRODUCT_COPY_FILES += \
 	device/rockchip/common/lowmem_package_filter.xml:system/etc/lowmem_package_filter.xml
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.config.low_ram=true
+	ro.config.low_ram=true \
+	sys.video.refFrameMode=1 \
+	sys.video.maxMemCapacity=165 \
+	sys.video.netBuffer=20 \
+	dalvik.vm.image-dex2oat-Xms=32m \
+	dalvik.vm.image-dex2oat-Xmx=32m \
+	dalvik.vm.dex2oat-Xms=32m \
+	dalvik.vm.dex2oat-Xmx=256m
 endif
 
 ifeq ($(strip $(TARGET_BOARD_PLATFORM_PRODUCT)), vr)

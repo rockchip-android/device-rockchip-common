@@ -109,6 +109,10 @@ TARGET_NO_BOOTLOADER ?= true
 BOARD_USE_LOW_MEM ?= false
 DEVICE_PACKAGE_OVERLAYS += device/rockchip/common/overlay
 
+ifeq ($(strip $(BOARD_USE_LOW_MEM)), true)
+DEVICE_PACKAGE_OVERLAYS += device/rockchip/common/overlay_lowram
+endif
+
 #######for target product ########
 ifeq ($(TARGET_BOARD_PLATFORM_PRODUCT),box)
 DEVICE_PACKAGE_OVERLAYS += device/rockchip/common/overlay_screenoff
