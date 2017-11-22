@@ -25,6 +25,8 @@ PACK_TOOL_DIR=RKTools/linux/Linux_Pack_Firmware
 IMAGE_PATH=rockdev/Image-$TARGET_PRODUCT
 export PROJECT_TOP=`gettop`
 
+WIDEVINE_LEVEL=`get_build_var BOARD_WIDEVINE_OEMCRYPTO_LEVEL`
+
 #lunch $DEVICE-$BUILD_VARIANT
 
 PLATFORM_VERSION=`get_build_var PLATFORM_VERSION`
@@ -51,6 +53,13 @@ if [ $? -eq 0 ]; then
 else
     echo "Build uboot failed!"
     exit 1
+fi
+#trust: for rk3229 box WIDEVINE_LEVEL 1 must use ta trust
+if [ "$WIDEVINE_LEVEL" = "1" ]; then
+  if [ "$DEVICE" = "rk322x_box" ]; then
+       mv u-boot/trust_with_ta.img u-boot/trust.img
+       echo "WIDEVINE_LEVEL 1 use ta trust"
+  fi
 fi
 
 # build kernel
