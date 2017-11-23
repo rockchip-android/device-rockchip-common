@@ -152,3 +152,6 @@
 
 /dev/block/mmcblk1 u:object_r:uboot_block_device:s0
 /dev/block/mmcblk1rpmb u:object_r:rpmb_block_device:s0
+
+#for recovery
+/backup(/.*)?               u:object_r:system_file:s0
