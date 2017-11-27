@@ -63,7 +63,7 @@ else
     exit 1
 fi
 # build wifi ko
-#source device/rockchip/common/build_wifi_ko.sh
+source device/rockchip/common/build_wifi_ko.sh
 
 
 # build android
