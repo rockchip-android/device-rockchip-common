@@ -27,6 +27,7 @@ fi
 IMAGE_PATH=rockdev/Image-$TARGET_PRODUCT
 UBOOT_PATH=u-boot
 KERNEL_PATH=kernel
+KERNEL_CONFIG=$KERNEL_PATH/.config
 rm -rf $IMAGE_PATH
 mkdir -p $IMAGE_PATH
 
@@ -104,6 +105,12 @@ fi
 	cp -a rkst/Image/pcba_small_misc.img $IMAGE_PATH/pcba_small_misc.img
 	cp -a rkst/Image/pcba_whole_misc.img $IMAGE_PATH/pcba_whole_misc.img
 	echo "done."
+
+if [ `grep "CONFIG_WIFI_BUILD_MODULE=y" $KERNEL_CONFIG` ]; then
+	echo "Install wifi ko to $OUT/system/lib/modules/"
+	mkdir -p $OUT/system/lib/modules/
+	find kernel/drivers/net/wireless/rockchip_wlan/*  -name "*.ko" | xargs -n1 -i cp {} $OUT/system/lib/modules/
+fi
 
 if [ -d $OUT/system ]; then
   echo -n "create system.img..."
