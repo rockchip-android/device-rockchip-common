@@ -693,15 +693,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.safemode.disabled=true
 endif
 
-ifeq ($(strip $(BOARD_ENABLE_3G_DONGLE)),true)
-ifeq ($(strip $(PRODUCT_BUILD_MODULE)), px3car)
+ifeq ($(strip $(BOARD_HAVE_DONGLE)),true)
+ifeq ($(strip $(TARGET_ARCH)), arm64)
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.enable.3g.dongle=true \
-    rild.libpath=/system/lib/libril-rk29-dataonly.so
+    rild.libpath=/system/lib64/libril-rk29-dataonly.so
 else
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.enable.3g.dongle=true \
-    rild.libpath=/system/lib64/libril-rk29-dataonly.so
+    rild.libpath=/system/lib/libril-rk29-dataonly.so
 endif
 endif
 
